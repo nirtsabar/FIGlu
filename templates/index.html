@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="he">
+
+<head>
+	<title>The very untitled</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.gif') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/iGC.css') }}"/>
+	<style data="dynamicCss" type="text/css"></style>
+</head>
+
+<body onload="formInit(igForm)">
+<!--[if IE]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please upgrade
+	your browser to improve your experience and security.</p>
+<p class="browserupgrade">זהו דפדפן <strong>שפג תוקפו</strong>. נא לשדרג את הדפדפן לצורך הפעלה מוצלחת ומועילה.</p>
+<![endif]-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">Navbar</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+	        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Features</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Pricing</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<!==
+
+==>
+
+
+<div id="outer">
+	<span> </span>
+	<div id="main_title">
+		<h1>תכנית אינסולין להיום </h1>
+	</div>
+	<div id="ins_form">
+		<div onmouseleave="hide_tip()">
+			<p class="has_tip" id="disclaimer" onmouseover="show_tip(this)"></p>
+		</div>
+		<span> </span>
+		<form name="igForm" id="igForm">
+			<!--             action=http://localhost:5050/form method="post" -->
+			<div id="calc">
+
+				<div class="cItem">
+					<span> </span>
+					<div class="tRow" id="RG0">
+						<!-- ^ 3 char id code:
+                           R/D/L/T/S for Row,Div,Label,Text,Slider;
+                           G/I/O for Glucose/Insulin/Output-insulin;
+                           0/1/2 for morning, noon, evening|long-acting
+                             e.g. TG2 for text-box of glucose at evening-->
+						<label for="TG0" class="input_txt" id="LG0"></label>
+						<!--suppress HtmlUnknownAttribute -->
+						<input class="inGlu" name="glucose0" id="TG0" mirr="SG0" tabindex="1">
+					</div>
+					<div class="tRow" id="DG0">
+						<!--suppress HtmlFormInputWithoutLabel -->
+						<input name="SG0" id="SG0" type="range" class=slider mirr="TG0">
+					</div>
+				</div>
+
+				<div class="cItem">
+					<span> </span>
+					<div class="tRow" id="RI0">
+						<label for="TI0" class="input_txt" id="LI0"></label>
+						<input class="inIns" name="insulin0" id="TI0" mirr="SI0" tabindex="2">
+					</div>
+					<div class="tRow">
+						<!--suppress HtmlFormInputWithoutLabel -->
+						<input id="SI0" type="range" mirr="TI0" class=slider>
+					</div>
+				</div>
+
+				<div class="cItem">
+					<span> </span>
+					<div class="tRow" id="RG1">
+						<label for="TG1" class="input_txt" id="LG1"></label>
+						<input class="inGlu" name="glucose1" id="TG1" mirr="SG1" tabindex="3">
+					</div>
+					<div class="tRow">
+						<input name="SG1" id="SG1" type="range" mirr="TG1">
+					</div>
+				</div>
+
+				<div class="cItem">
+					<span> </span>
+					<div class="tRow" id="RI1">
+						<label for="TI1" class="input_txt" id="LI1"></label>
+						<input class="inIns" name="insulin1" id="TI1" mirr="SI1" tabindex="4">
+					</div>
+					<div class="tRow">
+						<input name="SI1" id="SI1" type="range" mirr="TI1">
+					</div>
+				</div>
+
+				<div class="cItem">
+					<span> </span>
+					<div class="tRow" id="RG2">
+						<label for="TG2" class="input_txt" id="LG2"></label>
+						<input class="inGlu" name="glucose2" id="TG2" mirr="SG2" tabindex="5">
+					</div>
+					<div class="tRow">
+						<input name="SG2" id="SG2" type="range" mirr="TG2">
+					</div>
+				</div>
+
+				<div class="cItem">
+					<span> </span>
+					<div class="tRow" id="RI2">
+						<label for="TI2" class="input_txt" id="LI2"></label>
+						<input class="inIns" name="insulinLong" id="TI2" mirr="SI2" tabindex="6">
+					</div>
+					<div class="tRow">
+						<input name="SI2" id="SI2" type="range" mirr="TI2">
+					</div>
+				</div>
+
+				<div class="cItem mdItem">
+					<span> </span>
+					<div class="tRow" id="ROpG">
+						<label for="optimalGlucose" class="input_txt" id="Optimal_glucose"></label>
+						<input type="tel" name="optimalGlucose" id="optimalGlucose">
+					</div>
+					<span> </span>
+					<div class="tRow" id="RGIR">
+						<label for="glucose_Insulin_Factor" class="input_txt" id="GIR"></label>
+						<input type="tel" name="glucose_Insulin_Factor" id="glucose_Insulin_Factor">
+					</div>
+				</div>
+
+				<div class="tRow">
+					<label for="CalcBtn" class="input_txt btnHlp" id="CalcBtnH"></label>
+					<input type="button" class="input_txt" name="CalcBtn" id="CalcBtn"
+					       onClick="updateCalculator(this.form)"
+					       tabindex="7">
+				</div>
+
+				<div class="cItem outItem">
+					<span> </span>
+					<div class="tRow">
+						<label for="OI0" class="input_txt" id="LO0"></label>
+						<input readonly name="rInsulin0" id="OI0">
+					</div>
+					<span> </span>
+					<div class="tRow" id="RrI1">
+						<label for="OI1" class="input_txt" id="LO1"></label>
+						<input readonly name="rInsulin1" id="OI1">
+					</div>
+					<span> </span>
+					<div class="tRow" id="RrI2">
+						<label for="OI2" class="input_txt" id="LO2"></label>
+						<input readonly name="rInsulin2" id="OI2">
+					</div>
+				</div>
+
+
+				<div class="tRow">
+					<label for="ZeroBtn" class="input_txt btnHlp" id="ZeroBtnH"></label>
+					<input type="button" name="ZeroBtn" id="ZeroBtn" class="input_txt pinkOver"
+					       onClick="clearForm(this.form)">
+				</div>
+				<div class="tRow">
+					<label for="SubmitBtn" class="input_txt btnHlp" id="SubmitBtnH"></label>
+					<input type="submit" name="SubmitBtn" id="SubmitBtn" class="input_txt">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+	<!-- Modal content -->
+	<div class="modal_content">
+		<p class="close">&times;</p>
+		<p class="help_text" id="helpText">Oops, sorry, ask Dr. Tsabar...</p>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/iScr.js') }}"></script>
+</body>
+</html>
