@@ -472,7 +472,7 @@ function outStyle(isFresh) {
 
 function show_tip(etip) { /*. Use an html.element parameter*/
     if (!etip.nextElementSibling) {
-        etip.insertAdjacentHTML('afterend', '<p name="e_Tip" id="e_tip"></p>');
+        etip.insertAdjacentHTML('afterend', '<p name="e_Tip" id="e_Tip"></p>');
         let sTip = etip.nextElementSibling;
         sTip.innerHTML = tP(etip, true);
         sTip.addEventListener('dblclick', function () {
