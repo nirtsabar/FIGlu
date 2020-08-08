@@ -5,17 +5,18 @@
 {% endblock %}
 
 {% block content %}
+	{{ super() }}
 	<style>
          .loginC {
 	         width: 90vw;
-             font-size: 5vw;
+             font-size: 7vw;
              display: inline-block;
 	         text-align: center;
          }
 	</style>
 	<form method="post">
 		<label for="username" class="loginC">שם משתמש</label>
-		<input name="username" id="username" required class="loginC">
+		<input name="username" id="username" required class="loginC" autofocus>
 		<label for="password" class="loginC">סיסמא</label>
 		<input type="password" name="password" id="password" required class="loginC">
 		<p></p>
