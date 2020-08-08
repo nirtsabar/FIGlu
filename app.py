@@ -33,23 +33,23 @@ def create_app(test_config=None):
     return app
 
 
-app = create_app()
+IGlu_app = create_app()
 
 
-app.register_blueprint(auth.bp)
+IGlu_app.register_blueprint(auth.bp)
 
 
-@app.route("/")
+@IGlu_app.route("/")
 def home():
     db.init_db()
     auth.get_db()
     return render_template("index.html", nav1='התחלה')
 
 
-@app.errorhandler(404)
+@IGlu_app.errorhandler(404)
 def not_found(error):
     return render_template('error.html'), 404
 
 
 if __name__ == "__main__":
-    app.run()
+    IGlu_app.run()

@@ -13,7 +13,10 @@ let lastIndex = -1; //global for last 'tab' / 'Enter' focus
 let visFocussable = [];
 let allElements = [];
 
-function noteID4value(slider) { // returns an ID string to match an input value note (used for slider '?' buttons)
+function noteID4value(slider) { // returns an ID string to match an input value note
+                                // used for slider '?' buttons:
+                                // N = none, E = Empty, Y = very low, L = low,
+                                // O = optimal, H = high, V = very high, M = medium dose
     let noteID = 'N' + slider.id.substr(1, 2);
     let sV = slider.value;
     if (sV === "0") {
