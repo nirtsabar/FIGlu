@@ -6,6 +6,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
+
 # from FIGlu.db import get_db
 
 
@@ -43,7 +44,7 @@ def register():
         elif not password:
             error = 'Password is required.'
         elif db.execute(
-            'SELECT id FROM user WHERE username = ?', (username,)
+                'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
             error = 'User {} is already registered.'.format(username)
 
@@ -56,9 +57,8 @@ def register():
             return redirect(url_for('auth.login'))
 
         flash(error)
+    return render_template('auth/register.html')
 
-
-############
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
@@ -78,7 +78,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('home'))
 
         flash(error)
 
@@ -100,7 +100,7 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('home'))
 
 
 def login_required(view):
@@ -112,5 +112,3 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
-
-

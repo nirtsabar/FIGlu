@@ -1,0 +1,4 @@
+.open user
+.DATABASES
+.TABLES
+.HELP

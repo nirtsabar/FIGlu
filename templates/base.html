@@ -2,7 +2,7 @@
 <html lang="he">
 
 <head>
-	<title>Flask Insulin Calculator</title>
+	<title>מחשבון אינסולין ב-Flask</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/iGC.css') }}"/>
@@ -27,39 +27,14 @@
 			{% if g.user %}
 				<li><span>{{ g.user['username'] }}</span>
 				<li><a href="{{ url_for('auth.logout') }}" class="nav-link">Log Out</a>
-			{% else %}
-				<li><a href="{{ url_for('home') }}" class="nav-link">Register</a>
-				<li><a href="{{ url_for('auth.login') }}" class="nav-link">Log In</a>
+					{% else %}
+				<li><a href="{{ url_for('auth.register') }}" class="nav-link">הרשמה</a>
+				<li><a href="{{ url_for('auth.login') }}" class="nav-link">כניסה</a>
 			{% endif %}
 		</ul>
-{#		<ul>#}
-{#			<li class="nav-item active">#}
-{#				<a class="nav-link" href="#">{{ nav1 }}<span class="sr-only">(current)</span></a>#}
-{#			</li>#}
-{#			<li class="nav-item">#}
-{#				<a class="nav-link" href="#">אפשרויות</a>#}
-{#			</li>#}
-{#			<li class="nav-item">#}
-{#				<a class="nav-link" href="#">סיכום</a>#}
-{#			</li>#}
-{#			<li class="nav-item">#}
-{#				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">חסום</a>#}
-{#			</li>#}
-{#		</ul>#}
 	</div>
 </nav>
-{#<nav>#}
-{##}
-{#	<ul>#}
-{#		{% if g.user %}#}
-{#			<li><span>{{ g.user['username'] }}</span>#}
-{#			<li><a href="{{ url_for('auth.logout') }}">Log Out</a>#}
-{#				{% else %}#}
-{#			<li><a href={{ url_for('home') }}>Register</a>#}
-{#			<li><a href="{{ url_for('auth.login') }}">Log In</a>#}
-{#		{% endif %}#}
-{#	</ul>#}
-{#</nav>#}
+
 <section class="content">
 	<header>
 		{% block header %}{% endblock %}
@@ -70,6 +45,14 @@
 </section>
 </body>
 
+<style>
+    .authF {
+        width: 90vw;
+        font-size: 7vw;
+        display: inline-block;
+        text-align: center;
+    }
+</style>
 {% block content %}{% endblock %}
 
 </html>

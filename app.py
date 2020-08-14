@@ -9,7 +9,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'FIGlu.sqlite'),
     )
 
     if test_config is None:
@@ -30,26 +30,21 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    @auth.login_required
+    @app.route("/")
+    def home():
+        # db.init_db()
+        auth.get_db()
+        return render_template("index.html")
+
+    @app.errorhandler(404)
+    def not_found(error):
+        return render_template('error.html'), 404
+
     return app
 
 
-IGlu_app = create_app()
-
-
-IGlu_app.register_blueprint(auth.bp)
-
-
-@IGlu_app.route("/")
-def home():
-    db.init_db()
-    auth.get_db()
-    return render_template("index.html", nav1='התחלה')
-
-
-@IGlu_app.errorhandler(404)
-def not_found(error):
-    return render_template('error.html'), 404
-
-
 if __name__ == "__main__":
+    IGlu_app = create_app()
+    IGlu_app.register_blueprint(auth.bp)
     IGlu_app.run()
