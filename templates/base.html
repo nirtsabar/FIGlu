@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he">
+<html lang="he" style="direction:rtl">
 
 <head>
 	<title>מחשבון אינסולין ב-Flask</title>
@@ -27,7 +27,7 @@
 			{% if g.user %}
 				<li><span>{{ g.user['username'] }}</span>
 				<li><a href="{{ url_for('auth.logout') }}" class="nav-link">Log Out</a>
-					{% else %}
+			{% else %}
 				<li><a href="{{ url_for('auth.register') }}" class="nav-link">הרשמה</a>
 				<li><a href="{{ url_for('auth.login') }}" class="nav-link">כניסה</a>
 			{% endif %}

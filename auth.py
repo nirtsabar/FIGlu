@@ -1,6 +1,6 @@
 import functools
 import sqlite3
-
+import bp as bp
 from flask import (
     current_app, Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -59,6 +59,7 @@ def register():
         flash(error)
     return render_template('auth/register.html')
 
+
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
@@ -71,9 +72,9 @@ def login():
         ).fetchone()
 
         if user is None:
-            error = 'Incorrect username.'
+            error = 'שם משתמש שגוי או לא קיים.'
         elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
+            error = 'סיסמא שגויה.'
 
         if error is None:
             session.clear()
