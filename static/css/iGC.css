@@ -2,6 +2,7 @@
     box-sizing: border-box;
     color: white;
     font-family: "Times New Roman", serif;
+    text-decoration: none;
 }
 
 html {
@@ -23,6 +24,7 @@ html {
     text-align: center;
     color: greenyellow;
     font-size: 3vw;
+    border-color: #888888;
 }
 
 body {
@@ -192,13 +194,6 @@ input[type="range"]::-moz-range-progress {
     background-color: green;
     padding: 0.3em;
     box-shadow: 1px 1px 1px lightgreen, -1px -1px 1px black;
-}
-
-.authF {
-    width: 90vw;
-    font-size: 7vw;
-    display: inline-block;
-    text-align: center;
 }
 
 .clrBtn, .lessBtn, .moreBtn, .noteBtn {

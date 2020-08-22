@@ -4,11 +4,16 @@
 	<h1>{% block title %}זיהוי{% endblock %}</h1>
 {% endblock %}
 
+{% block auth %}
+	<p><a href="{{ url_for('auth.register') }}" class="authF">הרשמה</a></p>
+	<p><a href="{{ url_for('auth.logout') }}" class="authF pinkOver">יציאה</a></p>
+{% endblock %}
+
 {% block content %}
 	<form method="post">
 		<label for="username" class="authF">שם משתמש</label>
 		<input name="username" id="username" required class="authF" autofocus>
-		<label for="password" class="authF">סיסמא</label>
+		<label for="password" class="authF">סיסמה</label>
 		<input type="password" name="password" id="password" required class="authF">
 		<p></p>
 		<input type="submit" value="כניסה" class="authF">

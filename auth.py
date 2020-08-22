@@ -1,9 +1,11 @@
 import functools
 import sqlite3
 import bp as bp
+import color as color
 from flask import (
     current_app, Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+from markupsafe import Markup
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -40,14 +42,13 @@ def register():
         error = None
 
         if not username:
-            error = 'Username is required.'
+            error = 'יש לרשום שם משתמש.'
         elif not password:
-            error = 'Password is required.'
+            error = 'יש לרשום סיסמה.'
         elif db.execute(
                 'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
-            error = 'User {} is already registered.'.format(username)
-
+            error = Markup('משתמש '+'<b>'+'{}'+'</b>'+' כבר רשום.').format(username)
         if error is None:
             db.execute(
                 'INSERT INTO user (username, password) VALUES (?, ?)',
@@ -74,7 +75,7 @@ def login():
         if user is None:
             error = 'שם משתמש שגוי או לא קיים.'
         elif not check_password_hash(user['password'], password):
-            error = 'סיסמא שגויה.'
+            error = 'סיסמה שגויה.'
 
         if error is None:
             session.clear()

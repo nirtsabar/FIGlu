@@ -3,8 +3,8 @@
 
 <head>
 	<title>מחשבון אינסולין ב-Flask</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{#	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
+	{#	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/iGC.css') }}"/>
 	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.gif') }}">
 </head>
@@ -16,40 +16,57 @@
 <p class="browserupgrade">זהו דפדפן <strong>שפג תוקפו</strong>. נא לשדרג את הדפדפן לצורך הפעלה מוצלחת ומועילה.</p>
 <![endif]-->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="#"><h1>&nbspמשתמש&nbsp</h1></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-	        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
+<div>
+	<a href="#">
+		<h1>&nbspמטופל&nbsp
 			{% if g.user %}
-				<li><span>{{ g.user['username'] }}</span>
-				<li><a href="{{ url_for('auth.logout') }}" class="nav-link">Log Out</a>
-			{% else %}
-				<li><a href="{{ url_for('auth.register') }}" class="nav-link">הרשמה</a>
-				<li><a href="{{ url_for('auth.login') }}" class="nav-link">כניסה</a>
+				<b>{{ g.user['username'] }}</b>
 			{% endif %}
-		</ul>
+		</h1>
+	</a>
+	<div>
+		{% block auth %}
+		{% endblock %}
+
+				{#
+				if not 'register' in self._TemplateReference__context.name %}
+				<p><a href="{{ url_for('auth.register') }}" class="authF">הרשמה</a></p>
+			{% endif %}
+			{% if not 'login' in self._TemplateReference__context.name %}
+				<p><a href="{{ url_for('auth.login') }}" class="authF">כניסה</a></p>
+			{% endif %}
+		{% endif %}
+
+			{% if g.user %}
+		{{ self._TemplateReference__context.name }}
+		{% if 'index.html' == self._TemplateReference__context.name %}
+			<p><a href="{{ url_for('auth.logout') }}" class="authF pinkOver">יציאה</a></p>
+		{% endif %}
+#}
+
 	</div>
-</nav>
+</div>
 
 <section class="content">
 	<header>
 		{% block header %}{% endblock %}
 	</header>
 	{% for message in get_flashed_messages() %}
-		<div class="flash">{{ message }}</div>
+		<div class="flash authF">{{ message }}</div>
 	{% endfor %}
 </section>
 </body>
 
 <style>
+    .flexDiv {
+        display: flex;
+    }
+
     .authF {
-        width: 90vw;
-        font-size: 7vw;
-        display: inline-block;
+        margin: 0;
+        padding: 0.5vw 2vw;
+        width: 100%;
+        font-size: 8vw;
         text-align: center;
     }
 </style>
