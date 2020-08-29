@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
-{% block header %}
+{#{% block header %}
 	<h1>{% block title %}הרשמה{% endblock %}</h1>
-{% endblock %}
+{% endblock %}#}
 
 {% block auth %}
-	<p><a href="{{ url_for('auth.login') }}" class="authF">כניסה</a></p>
-	<p><a href="{{ url_for('auth.logout') }}" class="authF pinkOver">יציאה</a></p>
+	<a href="{{ url_for('auth.login') }}" class="authF">כניסה</a>
+	<a href="{{ url_for('auth.logout') }}" class="authF pinkOver">יציאה</a>
 {% endblock %}
 
 {% block content %}
 	<form method="post">
 		<div class="flexDiv">
-			<label for="username" class="authF">שם משתמש</label>
+			<label for="username" class="authF labels">שם משתמש</label>
 			<input name="username" id="username" required class="authF" autofocus>
 		</div>
 		<div class="flexDiv">
-			<label for="password" class="authF">סיסמה</label>
+			<label for="password" class="authF labels">סיסמה</label>
 			<input type="password" name="password" id="password" required class="authF">
 		</div>
 		<input type="submit" value="להרשמה" class="authF">

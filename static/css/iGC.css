@@ -42,7 +42,7 @@ h1 {
     color: lightgreen;
 }
 
-h1, p, form {
+h1, p, form, div {
     display: block;
     margin: 0.7vw;
     text-align: center;
@@ -60,6 +60,7 @@ div {
     border-color: green;
     border-width: 0.2em;
     border-radius: 1em;
+    background-color: darkgreen;
     padding: 0.5em;
     margin: 0.3em;
 }
@@ -225,6 +226,7 @@ input[type="range"]::-moz-range-progress {
 
 .has_tip:hover {
     visibility: visible;
+    cursor: pointer;
 }
 
 /* The Modal (background) */

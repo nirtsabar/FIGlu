@@ -6,6 +6,7 @@
 	{#	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
 	{#	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/iGC.css') }}"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}"/>
 	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.gif') }}">
 </head>
 
@@ -15,35 +16,17 @@
 	your browser to improve your experience and security.</p>
 <p class="browserupgrade">זהו דפדפן <strong>שפג תוקפו</strong>. נא לשדרג את הדפדפן לצורך הפעלה מוצלחת ומועילה.</p>
 <![endif]-->
-
-<div>
+<div class="cItem">
 	<a href="#">
-		<h1>&nbspמטופל&nbsp
+		<h1>
 			{% if g.user %}
 				<b>{{ g.user['username'] }}</b>
 			{% endif %}
 		</h1>
 	</a>
-	<div>
+	<div class="flexDiv">
 		{% block auth %}
 		{% endblock %}
-
-				{#
-				if not 'register' in self._TemplateReference__context.name %}
-				<p><a href="{{ url_for('auth.register') }}" class="authF">הרשמה</a></p>
-			{% endif %}
-			{% if not 'login' in self._TemplateReference__context.name %}
-				<p><a href="{{ url_for('auth.login') }}" class="authF">כניסה</a></p>
-			{% endif %}
-		{% endif %}
-
-			{% if g.user %}
-		{{ self._TemplateReference__context.name }}
-		{% if 'index.html' == self._TemplateReference__context.name %}
-			<p><a href="{{ url_for('auth.logout') }}" class="authF pinkOver">יציאה</a></p>
-		{% endif %}
-#}
-
 	</div>
 </div>
 
@@ -52,24 +35,13 @@
 		{% block header %}{% endblock %}
 	</header>
 	{% for message in get_flashed_messages() %}
-		<div class="flash authF">{{ message }}</div>
+		<div class="flash authF" style="width: 100%" >{{ message }}</div>
 	{% endfor %}
 </section>
 </body>
 
-<style>
-    .flexDiv {
-        display: flex;
-    }
 
-    .authF {
-        margin: 0;
-        padding: 0.5vw 2vw;
-        width: 100%;
-        font-size: 8vw;
-        text-align: center;
-    }
-</style>
+
 {% block content %}{% endblock %}
 
 </html>

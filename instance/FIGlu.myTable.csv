@@ -1,0 +1,10 @@
+id,username,sentTime,glucose0,insulin0,glucose1,insulin1,glucose2,insulinLong,optimalGlucose,glucose_Insulin_Factor,rInsulin0,rInsulin1,rInsulin2,comment
+1,username,1598678823.0575,,,,,,,180,25,,,,
+2,username,1598679023.12612,,,,,,,180,25,,,,
+3,username,1598679410.19941,,,,,,,180,25,,,,
+4,username,1598679445.35336,,,,,,,180,25,,,,
+5,username,1598679623.63589,,,,,,,180,25,,,,
+6,username,1598679628.75175,,,,,,,180,25,,,,
+7,username,1598679945.05635,11,22,33,44,55,66,7,25,23,46,66,
+8,מדדיהו הסוכרתי,1598682439.32019,,,,,,,180,25,,,,
+9,מדדיהו הסוכרתי,1598689933.09622,,,,,,,180,25,,,,

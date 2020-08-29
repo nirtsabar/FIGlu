@@ -1,0 +1,18 @@
+.flexDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.authF {
+    margin: 0.1em;
+    padding: 0.5vw 2vw;
+    font-size: 8vw;
+    text-align: center;
+    border-radius: 0.5em;
+    width: 45vw;
+    border: 0.1em solid green;
+}
+
+.labels {
+    border: none;
+}

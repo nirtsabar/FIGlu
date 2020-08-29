@@ -6,8 +6,8 @@
 			<p><a href="{{ url_for('auth.logout') }}" class="authF pinkOver">יציאה</a></p>
 		{% endif %}
 	{% else %}
-		<p><a href="{{ url_for('auth.login') }}" class="authF">כניסה</a></p>
-		<p><a href="{{ url_for('auth.register') }}" class="authF">הרשמה</a></p>
+		<a href="{{ url_for('auth.login') }}" class="authF">כניסה</a>
+		<a href="{{ url_for('auth.register') }}" class="authF">הרשמה</a>
 	{% endif %}
 
 {% endblock %}
@@ -27,7 +27,7 @@
 				<p class="has_tip" id="disclaimer" ondblclick="show_tip(this)"></p>
 			</div>
 			<span> </span>
-			<form name="igForm" id="igForm">
+			<form name="igForm" id="igForm" method="post">
 				<!--             action=http://localhost:5050/form method="post" -->
 				<div id="calc">
 
