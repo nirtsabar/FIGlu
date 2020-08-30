@@ -244,6 +244,15 @@ function formInit(iForm) {
     allElements = Array.from(document.querySelectorAll("*"));
     GoNext(); // focus on highest element and than...
     autoFocusedE.focus();
+
+    if (typeof(Storage) !== "undefined") {
+        if (localStorage.getItem("stored")) {
+            // Retrieve
+            for (let i = 0; i < focusabl.length; i++) {
+                focusabl[i].value = localStorage.getItem(i.toString());
+                }
+        }
+    }
 } // end of formInit here //
 //----------------------//
 
@@ -588,4 +597,16 @@ function clearForm(oForm) {
     oForm.optimalGlucose.value = InitOptimalGlu;
     oForm.glucose_Insulin_Factor.value = InitInsGluFactor;
     autoFocusedE.focus();
+}
+
+function submitForm(sForm) {
+    // Check browser storage support
+    if (typeof(Storage) !== "undefined") {
+        // Store
+        for (let i = 0; i < focusabl.length; i++) {
+            localStorage.setItem(i.toString(), focusabl[i].value);
+            }
+        localStorage.setItem("stored", "true");
+    }
+    sForm.submit();
 }

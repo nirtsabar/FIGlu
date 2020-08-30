@@ -23,7 +23,6 @@ def get_db():
 
 def close_db(e=None):
     db = g.pop('db', None)
-
     if db is not None:
         db.close()
 
@@ -62,9 +61,7 @@ def register():
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
-    print('#50# login')
     if request.method == 'POST':
-        print('#51# login request.method == "POST"')
         username = request.form['username']
         password = request.form['password']
         db = get_db()
@@ -79,13 +76,14 @@ def login():
             error = 'סיסמה שגויה'
 
         if error is None:
-            session.clear()
+            if not session.get('username') is None:
+                if not session['username'] == username:
+                    session.clear()
             session['user_id'] = user['id']
             session['username'] = username
             return redirect(url_for('home'))
 
         flash(error)
-
     return render_template('auth/login.html')
 
 
@@ -114,5 +112,4 @@ def login_required(view):
         if g.user is None:
             return redirect(url_for('auth.login'))
         return view(**kwargs)
-
     return wrapped_view

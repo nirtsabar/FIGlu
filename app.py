@@ -1,18 +1,15 @@
 import os
-import time
-from datetime import datetime
-
-from flask import Flask, render_template, request, flash, session, g, redirect, url_for
-
-import auth
 import db
+import auth
+from datetime import datetime
+from flask import Flask, render_template, request, flash, session, g, redirect, url_for
 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev',
+        SECRET_KEY='35gt8jkyGE76qQp8',
         EXPLAIN_TEMPLATE_LOADING=False,
         DATABASE=os.path.join(app.instance_path, 'FIGlu.sqlite'),
     )
@@ -31,16 +28,13 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @auth.login_required
     @app.route("/", methods=('GET', 'POST'))
+    @auth.login_required
     def home():
         auth.get_db()
         if request.method == 'POST':
-            if g.user is None:
-                return redirect(url_for('auth.login'))
             timestamp = datetime.now()
             username = session['username']
-            print(username, ": ", request.form)
             glucose0 = request.form['glucose0']
             glucose1 = request.form['glucose1']
             glucose2 = request.form['glucose2']
@@ -55,8 +49,7 @@ def create_app(test_config=None):
             comment = ""
             d_b = auth.get_db()
             error = None
-            try:
-                error = d_b.execute(
+            d_b.execute(
                     'INSERT INTO gluIns (username, sentTime, glucose0, glucose1, glucose2, insulin0, insulin1,'
                     ' insulinLong, optimalGlucose, glucose_Insulin_Factor, rInsulin0, rInsulin1,'
                     ' rInsulin2, comment) '
@@ -65,10 +58,7 @@ def create_app(test_config=None):
                      insulin_long, optimal_glucose, glucose_insulin_factor, r_insulin0, r_insulin1,
                      r_insulin2, comment)
                 )
-            except:
-                flash(error)
-            else:
-                d_b.commit()
+            d_b.commit()
         return render_template('index.html')
 
     @app.errorhandler(404)
@@ -78,11 +68,6 @@ def create_app(test_config=None):
     db.init_app(app)
 
     return app
-
-
-@auth.login_required  # content moved to create_app.home
-def get_record():
-    return
 
 
 if __name__ == "__main__":

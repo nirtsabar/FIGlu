@@ -12,7 +12,6 @@ def init_app(app):
 
 def init_db():
     db = auth.get_db()
-    print("got db")
     # schema.sql contains DROP (delete) commands
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
