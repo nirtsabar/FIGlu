@@ -11,6 +11,7 @@ let autoFocusedE;
 let focusabl; //Array for all potential elements to include in "Enter" key toggling
 let lastIndex = -1; //global for last 'tab' / 'Enter' focus
 let visFocussable = [];
+let eForStore = []; //global for localStorage elements
 let allElements = [];
 
 function noteID4value(slider) { // returns an ID string to match an input value note
@@ -246,11 +247,13 @@ function formInit(iForm) {
     autoFocusedE.focus();
 
     if (typeof(Storage) !== "undefined") {
+        eForStore = Array.from(document.querySelectorAll('.fStore'))
         if (localStorage.getItem("stored")) {
             // Retrieve
-            for (let i = 0; i < focusabl.length; i++) {
-                focusabl[i].value = localStorage.getItem(i.toString());
+            for (let i = 0; i < eForStore.length; i++) {
+                eForStore[i].value = localStorage.getItem(i.toString());
                 }
+            localStorage.clear()
         }
     }
 } // end of formInit here //
@@ -603,8 +606,9 @@ function submitForm(sForm) {
     // Check browser storage support
     if (typeof(Storage) !== "undefined") {
         // Store
-        for (let i = 0; i < focusabl.length; i++) {
-            localStorage.setItem(i.toString(), focusabl[i].value);
+        localStorage.clear()
+        for (let i = 0; i < eForStore.length; i++) {
+            localStorage.setItem(i.toString(), eForStore[i].value);
             }
         localStorage.setItem("stored", "true");
     }

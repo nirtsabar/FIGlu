@@ -2,9 +2,7 @@
 
 {% block auth %}
 	{% if g.user %}
-		{% if 'index.html' == self._TemplateReference__context.name %}
-			<p><a href="{{ url_for('auth.logout') }}" class="authF pinkOver">יציאה</a></p>
-		{% endif %}
+			<a href="{{ url_for('auth.logout') }}" class="authF pinkOver">יציאה</a>
 	{% else %}
 		<a href="{{ url_for('auth.login') }}" class="authF">כניסה</a>
 		<a href="{{ url_for('auth.register') }}" class="authF">הרשמה</a>
@@ -41,11 +39,11 @@
                                  e.g. TG2 for text-box of glucose at evening-->
 							<label for="TG0" class="input_txt" id="LG0"></label>
 							<!--suppress HtmlUnknownAttribute -->
-							<input class="inGlu" name="glucose0" id="TG0" mirr="SG0" tabindex="1">
+							<input class="inGlu fStore" name="glucose0" id="TG0" mirr="SG0" tabindex="1">
 						</div>
 						<div class="tRow" id="DG0">
 							<!--suppress HtmlFormInputWithoutLabel -->
-							<input name="SG0" id="SG0" type="range" class=slider mirr="TG0">
+							<input name="SG0" id="SG0" type="range" mirr="TG0">
 						</div>
 					</div>
 
@@ -53,11 +51,11 @@
 						<span> </span>
 						<div class="tRow" id="RI0">
 							<label for="TI0" class="input_txt" id="LI0"></label>
-							<input class="inIns" name="insulin0" id="TI0" mirr="SI0" tabindex="2">
+							<input class="inIns fStore" name="insulin0" id="TI0" mirr="SI0" tabindex="2">
 						</div>
 						<div class="tRow">
 							<!--suppress HtmlFormInputWithoutLabel -->
-							<input id="SI0" type="range" mirr="TI0" class=slider>
+							<input id="SI0" type="range" mirr="TI0">
 						</div>
 					</div>
 
@@ -65,7 +63,7 @@
 						<span> </span>
 						<div class="tRow" id="RG1">
 							<label for="TG1" class="input_txt" id="LG1"></label>
-							<input class="inGlu" name="glucose1" id="TG1" mirr="SG1" tabindex="3">
+							<input class="inGlu fStore" name="glucose1" id="TG1" mirr="SG1" tabindex="3">
 						</div>
 						<div class="tRow">
 							<input name="SG1" id="SG1" type="range" mirr="TG1">
@@ -76,7 +74,7 @@
 						<span> </span>
 						<div class="tRow" id="RI1">
 							<label for="TI1" class="input_txt" id="LI1"></label>
-							<input class="inIns" name="insulin1" id="TI1" mirr="SI1" tabindex="4">
+							<input class="inIns fStore" name="insulin1" id="TI1" mirr="SI1" tabindex="4">
 						</div>
 						<div class="tRow">
 							<input name="SI1" id="SI1" type="range" mirr="TI1">
@@ -87,7 +85,7 @@
 						<span> </span>
 						<div class="tRow" id="RG2">
 							<label for="TG2" class="input_txt" id="LG2"></label>
-							<input class="inGlu" name="glucose2" id="TG2" mirr="SG2" tabindex="5">
+							<input class="inGlu fStore" name="glucose2" id="TG2" mirr="SG2" tabindex="5">
 						</div>
 						<div class="tRow">
 							<input name="SG2" id="SG2" type="range" mirr="TG2">
@@ -98,7 +96,7 @@
 						<span> </span>
 						<div class="tRow" id="RI2">
 							<label for="TI2" class="input_txt" id="LI2"></label>
-							<input class="inIns" name="insulinLong" id="TI2" mirr="SI2" tabindex="6">
+							<input class="inIns fStore" name="insulinLong" id="TI2" mirr="SI2" tabindex="6">
 						</div>
 						<div class="tRow">
 							<input name="SI2" id="SI2" type="range" mirr="TI2">
@@ -109,12 +107,12 @@
 						<span> </span>
 						<div class="tRow" id="ROpG">
 							<label for="optimalGlucose" class="input_txt" id="Optimal_glucose"></label>
-							<input type="tel" name="optimalGlucose" id="optimalGlucose">
+							<input type="tel" name="optimalGlucose" class="fStore" id="optimalGlucose">
 						</div>
 						<span> </span>
 						<div class="tRow" id="RGIR">
-							<label for="glucose_Insulin_Factor" class="input_txt" id="GIR"></label>
-							<input type="tel" name="glucose_Insulin_Factor" id="glucose_Insulin_Factor">
+							<label for="glucose_Insulin_Factor" class="input_txt fStore" id="GIR"></label>
+							<input type="tel" name="glucose_Insulin_Factor" class="fStore" id="glucose_Insulin_Factor">
 						</div>
 					</div>
 
@@ -129,17 +127,17 @@
 						<span> </span>
 						<div class="tRow">
 							<label for="OI0" class="input_txt" id="LO0"></label>
-							<input readonly name="rInsulin0" id="OI0">
+							<input readonly name="rInsulin0" class="fStore" id="OI0">
 						</div>
 						<span> </span>
 						<div class="tRow" id="RrI1">
 							<label for="OI1" class="input_txt" id="LO1"></label>
-							<input readonly name="rInsulin1" id="OI1">
+							<input readonly name="rInsulin1" class="fStore" id="OI1">
 						</div>
 						<span> </span>
 						<div class="tRow" id="RrI2">
 							<label for="OI2" class="input_txt" id="LO2"></label>
-							<input readonly name="rInsulin2" id="OI2">
+							<input readonly name="rInsulin2" class="fStore" id="OI2">
 						</div>
 					</div>
 

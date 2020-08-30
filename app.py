@@ -29,10 +29,12 @@ def create_app(test_config=None):
         pass
 
     @app.route("/", methods=('GET', 'POST'))
-    @auth.login_required
+    # @auth.login_required
     def home():
         auth.get_db()
         if request.method == 'POST':
+            if g.user is None:
+                return redirect(url_for('auth.login'))
             timestamp = datetime.now()
             username = session['username']
             glucose0 = request.form['glucose0']
